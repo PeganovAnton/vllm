@@ -4,6 +4,12 @@ absl-py==2.4.0
     # via rouge-score
 accelerate==1.13.0
     # via peft
+aiofile==3.12.3
+    # via -r requirements/test/rocm.in
+aiofiles==25.1.0
+    # via
+    #   -r requirements/test/rocm.in
+    #   quart
 aiohappyeyeballs==2.6.1
     # via aiohttp
 aiohttp==3.13.3
@@ -63,6 +69,8 @@ audioread==3.0.1
     # via librosa
 av==16.1.0
     # via -r requirements/test/rocm.in
+awscrt==0.36.2
+    # via -r requirements/test/rocm.in
 azure-core==1.39.0
     # via
     #   azure-identity
@@ -79,6 +87,10 @@ black==26.3.1
     # via datamodel-code-generator
 blake3==1.0.8
     # via -r requirements/test/../common.txt
+blinker==1.9.0
+    # via
+    #   flask
+    #   quart
 blobfile==3.0.0
     # via -r requirements/test/rocm.in
 bm25s==0.2.13
@@ -97,6 +109,8 @@ buildkite-test-collector==0.1.9
     # via -r requirements/test/rocm.in
 cachetools==7.0.5
     # via -r requirements/test/../common.txt
+caio==0.12.2
+    # via aiofile
 cbor2==5.9.0
     # via -r requirements/test/../common.txt
 certifi==2026.2.25
@@ -120,9 +134,11 @@ chz==0.4.0
 click==8.4.2
     # via
     #   black
+    #   flask
     #   huggingface-hub
     #   jiwer
     #   nltk
+    #   quart
     #   ray
     #   rich-toolkit
     #   schemathesis
@@ -161,6 +177,8 @@ cryptography==46.0.0
     #   google-auth
     #   msal
     #   pyjwt
+cupy-rocm-7-0==14.2.0
+    # via -r requirements/test/rocm.in
 cycler==0.12.1
     # via matplotlib
 datamodel-code-generator==0.55.0
@@ -253,6 +271,10 @@ filelock==3.25.2
     #   ray
     #   torch
     #   virtualenv
+flask==3.1.3
+    # via quart
+flydsl==0.2.4
+    # via -r requirements/test/rocm.in
 fonttools==4.62.1
     # via matplotlib
 frozendict==2.4.7
@@ -276,21 +298,32 @@ genson==1.3.0
     # via datamodel-code-generator
 google-api-core==2.30.0
     # via
+    #   google-cloud-bigtable
     #   google-cloud-core
+    #   google-cloud-monitoring
     #   google-cloud-storage
     #   opencensus
 google-auth==2.49.1
     # via
     #   google-api-core
+    #   google-cloud-bigtable
     #   google-cloud-core
+    #   google-cloud-monitoring
     #   google-cloud-storage
     #   runai-model-streamer-gcs
+google-cloud-bigtable==2.43.0
+    # via -r requirements/test/rocm.in
 google-cloud-core==2.5.0
-    # via google-cloud-storage
+    # via
+    #   google-cloud-bigtable
+    #   google-cloud-storage
+google-cloud-monitoring==2.31.0
+    # via google-cloud-bigtable
 google-cloud-storage==3.10.1
     # via runai-model-streamer-gcs
 google-crc32c==1.8.0
     # via
+    #   google-cloud-bigtable
     #   google-cloud-storage
     #   google-resumable-media
 google-resumable-media==2.8.0
@@ -298,6 +331,8 @@ google-resumable-media==2.8.0
 googleapis-common-protos==1.73.0
     # via
     #   google-api-core
+    #   grpc-google-iam-v1
+    #   grpcio-status
     #   opentelemetry-exporter-otlp-proto-grpc
     #   opentelemetry-exporter-otlp-proto-http
 gpt-oss==0.0.8
@@ -306,24 +341,38 @@ graphql-core==3.2.8
     # via hypothesis-graphql
 greenlet==3.3.2
     # via sqlalchemy
+grpc-google-iam-v1==0.14.5
+    # via google-cloud-bigtable
 grpcio==1.78.0
     # via
     #   -c requirements/rocm.txt
     #   -r requirements/test/rocm.in
+    #   google-api-core
+    #   google-cloud-bigtable
+    #   google-cloud-monitoring
+    #   googleapis-common-protos
+    #   grpc-google-iam-v1
     #   grpcio-reflection
+    #   grpcio-status
     #   opentelemetry-exporter-otlp-proto-grpc
     #   ray
 grpcio-reflection==1.78.0
     # via
     #   -c requirements/rocm.txt
     #   -r requirements/test/rocm.in
+grpcio-status==1.78.0
+    # via google-api-core
 h11==0.16.0
     # via
     #   httpcore
     #   httpcore2
+    #   hypercorn
     #   uvicorn
+    #   wsproto
 h2==4.3.0
-    # via httpx
+    # via
+    #   httpx
+    #   hypercorn
 harfile==0.5.0
     # via schemathesis
 hf-xet==1.6.0
@@ -371,6 +420,8 @@ huggingface-hub==1.28.0
     #   vocos
 humanize==4.15.0
     # via runai-model-streamer
+hypercorn==0.18.0
+    # via quart
 hyperframe==6.1.0
     # via h2
 hypothesis==6.151.9
@@ -410,12 +461,18 @@ isodate==0.7.2
     # via azure-storage-blob
 isort==8.0.1
     # via datamodel-code-generator
+itsdangerous==2.2.0
+    # via
+    #   flask
+    #   quart
 jinja2==3.1.6
     # via
     #   datamodel-code-generator
     #   fastapi
+    #   flask
     #   genai-perf
     #   lm-eval
+    #   quart
     #   torch
 jiter==0.14.0
     # via
@@ -494,8 +551,10 @@ markdown-it-py==4.0.0
     # via rich
 markupsafe==3.0.3
     # via
+    #   flask
     #   jinja2
     #   mako
+    #   quart
     #   werkzeug
 matplotlib==3.10.8
     # via -r requirements/test/rocm.in
@@ -580,6 +639,7 @@ numpy==2.2.6
     #   bm25s
     #   contourpy
     #   cupy-cuda12x
+    #   cupy-rocm-7-0
     #   datasets
     #   decord
     #   einx
@@ -650,6 +710,7 @@ opentelemetry-api==1.40.0
     # via
     #   -c requirements/common.txt
     #   -r requirements/test/../common.txt
+    #   google-cloud-bigtable
     #   mcp
     #   opentelemetry-exporter-otlp-proto-grpc
     #   opentelemetry-exporter-otlp-proto-http
@@ -680,6 +741,7 @@ opentelemetry-sdk==1.40.0
     # via
     #   -c requirements/common.txt
     #   -r requirements/test/../common.txt
+    #   google-cloud-bigtable
     #   opentelemetry-exporter-otlp-proto-grpc
     #   opentelemetry-exporter-otlp-proto-http
     #   opentelemetry-exporter-prometheus
@@ -725,9 +787,11 @@ packaging==26.2
     #   pytest-rerunfailures
     #   ray
     #   scikit-image
+    #   setuptools-scm
     #   statsmodels
     #   transformers
     #   typepy
+    #   vcs-versioning
 pandas==3.0.1
     # via
     #   datasets
@@ -785,6 +849,8 @@ portalocker==3.2.0
     # via sacrebleu
 pqdm==0.2.0
     # via -r requirements/test/rocm.in
+priority==2.0.0
+    # via hypercorn
 prometheus-client==0.24.1
     # via
     #   -c requirements/common.txt
@@ -801,14 +867,21 @@ propcache==0.4.1
     #   aiohttp
     #   yarl
 proto-plus==1.27.1
-    # via google-api-core
+    # via
+    #   google-api-core
+    #   google-cloud-bigtable
+    #   google-cloud-monitoring
 protobuf==6.33.6
     # via
     #   -c requirements/common.txt
     #   -r requirements/test/../common.txt
     #   google-api-core
+    #   google-cloud-bigtable
+    #   google-cloud-monitoring
     #   googleapis-common-protos
+    #   grpc-google-iam-v1
     #   grpcio-reflection
+    #   grpcio-status
     #   opentelemetry-proto
     #   proto-plus
     #   ray
@@ -836,6 +909,8 @@ pyasn1-modules==0.4.2
     # via google-auth
 pybase64==1.4.3
     # via -r requirements/test/../common.txt
+pybind11==3.0.4
+    # via -r requirements/test/rocm.in
 pycountry==26.2.16
     # via pydantic-extra-types
 pycparser==3.0
@@ -970,6 +1045,8 @@ pyzmq==27.1.0
     # via
     #   -c requirements/common.txt
     #   -r requirements/test/../common.txt
+quart==0.22.0
+    # via -r requirements/test/rocm.in
 rapidfuzz==3.12.1
     # via
     #   -r requirements/test/rocm.in
@@ -1103,7 +1180,12 @@ setuptools==79.0.1
     #   -r requirements/test/../common.txt
     #   model-hosting-container-standards
     #   pytablewriter
+    #   setuptools-scm
     #   torch
+setuptools-scm==10.2.2
+    # via
+    #   -c requirements/rocm.txt
+    #   -r requirements/test/rocm.in
 shellingham==1.5.4
     # via
     #   perceptron
@@ -1341,6 +1423,8 @@ uvicorn==0.42.0
     #   mcp
 uvloop==0.22.1
     # via uvicorn
+vcs-versioning==2.3.2
+    # via setuptools-scm
 vector-quantize-pytorch==1.28.0
     # via -r requirements/test/rocm.in
 virtualenv==21.2.0
@@ -1356,11 +1440,16 @@ wcwidth==0.6.0
 websockets==16.0
     # via uvicorn
 werkzeug==3.1.6
-    # via schemathesis
+    # via
+    #   flask
+    #   quart
+    #   schemathesis
 word2number==1.1
     # via lm-eval
 wrapt==2.1.2
     # via smart-open
+wsproto==1.3.2
+    # via hypercorn
 xgrammar==0.2.1
     # via
     #   -c requirements/common.txt
